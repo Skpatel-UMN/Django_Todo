@@ -1,0 +1,4 @@
+dajngo_todo_venv/
+
+*.cfg
+*_pycache_*

@@ -1,0 +1,21 @@
+{%extends 'todo/base.html'%}
+{%block content%}
+    <section class="vh-100" style="background-color: #eee;">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-lg-9 col-xl-7">
+                <div class="card rounded-3">
+                    <div class="card-body p-10">
+                        <h3 class="text-center my-3 pb-3">{{ todo_item }}</h3>
+                        <p class="text-center my-3 pb-3">Created on: {{ todo_item.date_published| date:"F d, Y"}}</p>
+                        <div class="col col-6 mt-4">
+                            <a class="btn btn-warning mr-2" href="{%url 'todo-update' todo_item.pk%}">Edit</a>
+                            <a class="btn btn-primary mr-2" href="{%url 'todo-home'%}">Go To Home Page</a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{%endblock%}

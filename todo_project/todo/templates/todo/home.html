@@ -1,0 +1,72 @@
+{%extends 'todo/base.html'%}
+{%block content%}
+<section class="vh-100" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-lg-9 col-xl-7">
+          <div class="card rounded-3">
+            <div class="card-body p-4">
+  
+              <h4 class="text-center my-3 pb-3">To Do App</h4>
+                      <!-- <label class="form-label" for="form1">Enter a task here:</label> -->
+                     
+                            <div class="col-12 mt-4 mb-4">
+                                <a class="btn btn-primary" href="{%url 'todo-create'%}" type='submit'>Create a New TODO</a>
+                            </div>
+  
+              {% if latest_todo_items %}
+              <table class="table mb-4">
+                <thead>
+                  <tr>
+                    <!-- <th scope="col">No.</th> -->
+                    <!-- <th scope="col"></th> -->
+                    <th scope="col">Todo item</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                    <th scope="col">Date Created</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {%for item in latest_todo_items%}
+                    <tr>
+                        <!-- <th scope="row">{{ item.id}}</th> -->
+                        <!-- <td><label for="myCheck{{item.id}}"></label><input type="checkbox" class="btn btn-success ms-1" id = "myCheck{{item.id}}" value="is_completed" onclick="myFunction({{item.id}})"></td> -->
+                        <!-- <td><label for="myCheck"><input type="checkbox" class="btn btn-success ms-1" id = "is_completed_checkbox" value={{item.complete}}></label></td> -->
+                        {%if item.complete%}
+                            <td><a href="{%url 'todo-update' item.id%}" id = "text"><s>{{item.todo_text}}</s></a></td>
+                            <td>Completed</td>
+                            {%else%}
+                            <td><a href="{%url 'todo-update' item.id%}" id = "text">{{item.todo_text}}</a></td>
+                            <td>In progress</td>
+                        {%endif%}
+                        <td>
+                        <a class="btn btn-warning mr-2" href="{%url 'todo-update' item.id%}">Edit</a>
+                        <a href="{%url 'todo-delete' item.id%}" type="submit" class="btn btn-danger">Delete</a>
+                        </td>
+                        <td>{{item.date_published | date:"F d, Y" }}</td>
+                    </tr>
+                    {%endfor%}
+                {%else%}
+                  <h3 class="text-center my-3 pb-3">No TODO items to display</h3>
+                {%endif%}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- <script>
+    function myFunction(id) {
+      var myCheck = document.getElementById(`myCheck${id}`);
+    //   console.log(`myCheck${id}`)
+      var text = document.getElementById(`text${id}`);
+      if (myCheck.checked == true){
+        text.style.textDecoration = "line-through";
+      } else {
+         text.style.textDecoration = "";
+      }
+    }
+    </script> -->
+{%endblock%}

@@ -1,0 +1,29 @@
+{% extends "todo/base.html"%}
+{%block content%}
+<section class="vh-100" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-lg-9 col-xl-7">
+                <div class="card rounded-3">
+                    <div class="card-body p-10">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="card-body p-4">
+                                <fieldset class="form-group">
+                                    <legend class="border-bottom mb-4">Delete Todo!</legend>
+                                    <h2 class="inf">Are you sure?</h2>
+                                    <h4 class="btn btn-outline-dange">Todo Item: {{object.todo_text}}</h4>
+                                </fieldset>
+                                <div class="form-group">
+                                    <button class="btn btn-outline-danger" type="submit">Confirm Delete</button>
+                                    <a class="btn btn-outline-secondary" href="{%url 'todo-home'%}">Cancel</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>          
+</section>
+{%endblock content%}
