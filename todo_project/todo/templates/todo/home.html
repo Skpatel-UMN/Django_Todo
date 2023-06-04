@@ -33,15 +33,15 @@
                         <!-- <td><label for="myCheck{{item.id}}"></label><input type="checkbox" class="btn btn-success ms-1" id = "myCheck{{item.id}}" value="is_completed" onclick="myFunction({{item.id}})"></td> -->
                         <!-- <td><label for="myCheck"><input type="checkbox" class="btn btn-success ms-1" id = "is_completed_checkbox" value={{item.complete}}></label></td> -->
                         {%if item.complete%}
-                            <td><a href="{%url 'todo-update' item.id%}" id = "text"><s>{{item.todo_text}}</s></a></td>
-                            <td>Completed</td>
+                            <td><a href="{%url 'todo-update' item.id%}" class="text-success" id = "text"><s>{{item.todo_text}}</s></a></td>
+                            <td class="text-success">Completed</td>
                             {%else%}
-                            <td><a href="{%url 'todo-update' item.id%}" id = "text">{{item.todo_text}}</a></td>
-                            <td>In progress</td>
+                            <td><a href="{%url 'todo-update' item.id%}" class="text-primary" id = "text">{{item.todo_text}}</a></td>
+                            <td class="text-primary">In progress</td>
                         {%endif%}
                         <td>
-                        <a class="btn btn-warning mr-2" href="{%url 'todo-update' item.id%}">Edit</a>
-                        <a href="{%url 'todo-delete' item.id%}" type="submit" class="btn btn-danger">Delete</a>
+                        <!-- <a class="btn btn-warning mr-2" href="{%url 'todo-update' item.id%}">Edit</a> -->
+                        <a href="{%url 'todo-delete' item.id%}" type="submit" class="btn btn-outline-danger">Delete</a>
                         </td>
                         <td>{{item.date_published | date:"F d, Y" }}</td>
                     </tr>

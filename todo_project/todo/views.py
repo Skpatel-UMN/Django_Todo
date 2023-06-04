@@ -1,16 +1,25 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
-from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
 from django.urls import reverse_lazy
 from .models import Todo_item
 # Create your views here.
 
-def home(request):
-    latest_todo_items = Todo_item.objects.order_by('date_published')
-    context = {"latest_todo_items":latest_todo_items}
-    return render(request, "todo/home.html", context)
+# def home(request):
+#     latest_todo_items = Todo_item.objects.order_by('date_published')
+#     context = {"latest_todo_items":latest_todo_items}
+#     return render(request, "todo/home.html", context)
 
+class HomeView(ListView):
+    model = Todo_item
+    template_name = "todo/home.html"
+    context_object_name = 'latest_todo_items'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
 
 # class TodoItemDetailView(DetailView):
 #      model = Todo_item
